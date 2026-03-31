@@ -1,4 +1,3 @@
-/* Global styles */
 * {
   margin: 0;
   padding: 0;
@@ -9,9 +8,9 @@
 
 body {
   background-color: rgb(26, 25, 25);
+  overflow: hidden;
 }
 
-/* Container */
 .container {
   min-height: 100vh;
   display: flex;
@@ -23,7 +22,6 @@ body {
   text-align: center;
 }
 
-/* Pop-up overlay */
 .pop-up {
   position: fixed;
   top: 0;
@@ -37,57 +35,41 @@ body {
   z-index: 10;
 }
 
-/* Start/Play Again button */
 #popUpButton {
   width: 20vw;
-  max-width: 160px;
-  min-width: 120px;
   height: 7vh;
-  max-height: 55px;
-  min-height: 44px;
   border-radius: 10px;
   background-color: #41e1c1;
   color: black;
   font-weight: 700;
-  font-size: 2vw;
-  max-font-size: 1.6rem;
+  font-size: clamp(1rem, 2vw, 1.6rem);
   cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: 0.3s;
   box-shadow:
     0 0 20px #41e1c1,
     0 0 60px #41e1c1;
 }
+
 #popUpButton:hover {
   transform: scale(1.1);
 }
 
-/* Heading */
 h1 {
-  font-size: 5vw;
-  max-font-size: 4rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   color: #41e1c1;
   text-shadow:
     0 0 20px #41e1c1,
     0 0 60px #41e1c1;
 }
 
-/* Choices buttons */
 .choices {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5vw;
-  margin-top: 20px;
+  gap: 20px;
 }
+
 .choice {
-  width: 15vw;
-  max-width: 150px;
-  min-width: 80px;
-  height: 15vw;
-  max-height: 150px;
-  min-height: 80px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background-color: #41e1c1;
   color: black;
@@ -95,121 +77,44 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2vw;
-  max-font-size: 2.3rem;
+  font-size: clamp(1rem, 2vw, 1.5rem);
   cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: 0.3s;
   box-shadow:
     0 0 20px #41e1c1,
     0 0 60px #41e1c1;
 }
-.choices:not(.disabled) .choice:hover {
+
+.choice:hover {
   transform: scale(1.1);
 }
 
-/* Result container */
+.choice:active {
+  transform: scale(0.9);
+}
+
 .result {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  align-items: center;
-  width: 90%;
-  max-width: 600px;
+  gap: 10px;
 }
 
-/* Display boxes */
 .display {
-  width: 100%;
   border: 2px solid #41e1c1;
-  padding: 12px 20px;
-  border-radius: 12px;
+  padding: 10px 20px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 2vw;
-  max-font-size: 2rem;
-  background-color: rgba(0, 0, 0, 0.1);
-  box-shadow:
-    0 0 20px #41e1c1,
-    0 0 60px #41e1c1;
-}
-.display span {
-  font-weight: 700;
-  color: #41e1c1;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  transition: 0.3s;
 }
 
-/* Disabled state for choices */
-.choices.disabled .choice {
-  pointer-events: none;
-  opacity: 0.55;
-  filter: grayscale(40%);
-  box-shadow: none !important;
-  transform: none !important;
+.win {
+  color: #22c55e;
 }
-
-/* Media queries for smaller screens */
-
-/* Tablet */
-@media (max-width: 1024px) {
-  h1 {
-    font-size: 6vw;
-  }
-  .choice {
-    width: 20vw;
-    height: 20vw;
-    font-size: 3vw;
-  }
-  .display {
-    font-size: 3vw;
-    padding: 10px 15px;
-  }
-  #popUpButton {
-    width: 25vw;
-    height: 8vh;
-    font-size: 3vw;
-  }
+.lose {
+  color: #ef4444;
 }
-
-/* Mobile */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 8vw;
-  }
-  .choice {
-    width: 25vw;
-    height: 25vw;
-    font-size: 4vw;
-  }
-  .display {
-    font-size: 4vw;
-    padding: 8px 12px;
-  }
-  #popUpButton {
-    width: 30vw;
-    height: 8vh;
-    font-size: 4vw;
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 8vw;
-  }
-  .choice {
-    width: 20vw;
-    height: 20vw;
-    font-size: 6vw;
-  }
-  .display {
-    font-size: 4vw;
-    padding: 10px 20px;
-  }
-  #popUpButton {
-    width: 35vw;
-    height: 8vh;
-    font-size: 5vw;
-  }
+.draw {
+  color: #facc15;
 }
